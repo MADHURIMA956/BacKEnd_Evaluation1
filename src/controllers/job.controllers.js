@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try{
-        const jobs =  await Job.find({})
+        const jobs =  await Job.find({'notice_period' : {$eq : '2 Months'}})
         .populate('skill_id','name')
         .lean().exec();
         return res.status(201).send(jobs);
@@ -23,7 +23,16 @@ router.get('/', async (req, res) => {
         return res.status(500).json({message: e.message, status : 'Failed'});
     }
 })
-
+router.get('/', async (req, res) => {
+    try{
+        const jobs =  await Job.find({}).sort({rating: 1})
+        .populate('skill_id','name')
+        .lean().exec();
+        return res.status(201).send(jobs);
+    }catch (e){
+        return res.status(500).json({message: e.message, status : 'Failed'});
+    }
+})
 router.get('/:id', async (req, res) => {
     try{
         const jobs =  await Job.findById(req.params.id).lean().exec();

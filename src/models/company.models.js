@@ -6,7 +6,7 @@ const companySchema = new mongoose.Schema({
 
     company_name : { type: String, required: true},
     open_job: { type:Boolean , required: true},
-        job_id : [
+    job_id : [
             {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'jobs',

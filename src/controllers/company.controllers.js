@@ -24,6 +24,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/', async (req, res) => {
+    try{
+        const Companys =  await Company.find({'open_job' : true})
+        .populate('job_id' ,'job_name' )      
+        .lean().exec();
+        return res.status(201).send(Companys);
+    }catch (e){
+        return res.status(500).json({message: e.message, status : 'Failed'});
+    }
+})
+
 router.get('/:id', async (req, res) => {
     try{
         const Companys =  await Company.findById(req.params.id).lean().exec();
