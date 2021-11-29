@@ -5,6 +5,7 @@ const Job = require('../models/job.models')
 const companySchema = new mongoose.Schema({
 
     company_name : { type: String, required: true},
+    open_job: { type:Boolean , required: true},
         job_id : [
             {
             type: mongoose.Schema.Types.ObjectId,

@@ -9,7 +9,6 @@ const jobSchema = new mongoose.Schema({
     rating: { type: Number, required: true},
     city: { type: String, required: true},
     notice_period : { type: String, required: true},
-    open_job: { type:Boolean , required: true},
     skill_id : [
         {
         type: mongoose.Schema.Types.ObjectId,
